@@ -25,6 +25,10 @@ vueApp.examples = [
             {
                 "title": "加载标绘插件-扇形搜寻区",
                 "url": "./startup-sectorSearch.html"
+            },
+            {
+                "title": "加载标绘插件-三角旗标",
+                "url": "./startup-triFlag.html"
             }
         ]
     }
