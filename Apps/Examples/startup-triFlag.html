@@ -82,6 +82,8 @@
                             <span>边框宽度: {{ outlineWidth }}像素</span><br/>
                             <span><input type="range" min="0" max="100" step="1" v-model.number="outlineWidth"></span><br/>
                             <span>填充颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
+                            <span>填充透明度: {{ colors[3] }}</span><br/>
+                            <span><input type="range" min="0" max="1" step="0.1" v-model.number="colors[3]"></span><br/>
                             <span>边框颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=outlineColorchange(event)><br/>
                         </div>
                 </div>
@@ -94,7 +96,8 @@
                     show: true, // 显示
                     outlineShow: true, //边框显示
                     ground: true, // 贴地
-                    outlineWidth: 5 // 宽度
+                    outlineWidth: 5, // 宽度
+                    colors: [0, 0, 0, 0]
                 };
             },
             // 1.1 资源创建
@@ -154,6 +157,7 @@
                 this._outlineShowUnbind = XE.MVVM.bind(this, 'outlineShow', triFlag, 'outlineShow');
                 this._groundUnbind = XE.MVVM.bind(this, 'ground', triFlag, 'ground');
                 this._outlineWidthUnbind = XE.MVVM.bind(this, 'outlineWidth', triFlag, 'outlineWidth');
+                this._colorsUnbind = XE.MVVM.bind(this, 'colors', triFlag, 'color');
 
                 this._earth = earth;
 
@@ -180,6 +184,7 @@
                 this._outlineShowUnbind = this._outlineShowUnbind && this._outlineShowUnbind();
                 this._groundUnbind = this._groundUnbind && this._groundUnbind();
                 this._outlineWidthUnbind = this._outlineWidthUnbind && this._outlineWidthUnbind();
+                this._colorsUnbind = this._colorsUnbind && this_colorsUnbind();
                 this._earth = this._earth && this._earth.destroy();
             },
         }
