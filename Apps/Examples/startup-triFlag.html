@@ -82,7 +82,7 @@
                             <span>边框宽度: {{ outlineWidth }}像素</span><br/>
                             <span><input type="range" min="0" max="100" step="1" v-model.number="outlineWidth"></span><br/>
                             <span>填充颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
-                            <span>填充透明度: {{ colors[3] }}</span><br/>
+                            <span>填充不透明度: {{ colors[3] }}</span><br/>
                             <span><input type="range" min="0" max="1" step="0.1" v-model.number="colors[3]"></span><br/>
                             <span>边框颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=outlineColorchange(event)><br/>
                         </div>
