@@ -21,6 +21,10 @@ vueApp.examples = [
             {
                 "title": "加载标绘插件-折线箭头",
                 "url": "./startup-polylineArrow.html"
+            },
+            {
+                "title": "加载标绘插件-扇形搜寻区",
+                "url": "./startup-sectorSearch.html"
             }
         ]
     }
