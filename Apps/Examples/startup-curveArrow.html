@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="xbsj-labels" content="Earth起步"></meta>
-    <title>加载标绘插件</title>
+    <title>加载标绘插件-曲线箭头</title>
     <!-- 0 引入js文件 -->
     <script src="../../XbsjEarth/XbsjEarth.js"></script>
+    <script src="./scripts/vue.min.js"></script>
     <style>
         html,
         body {
@@ -17,59 +18,171 @@
             margin: 0px;
             padding: 0px;
         }
+        input {
+            width: 350px;
+        }
+
+        .checkbox {
+            display: inline-block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .curvearrow {
+            width: 20px;
+            height: 16px;
+        }
+
+        .defultbtn {
+            display: inline-block;
+            text-align: center;
+            min-width: 60px;
+            height: 38px;
+            padding: 0 10px;
+            line-height: 38px;
+            border-radius: 100px;
+            border: 1px solid #C9C9C9;
+            background-color: #FFF;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .defultbtn:hover {
+            background-color: #b3daf8;
+        }
+
+        .btnon {
+            background-color: #1E9FFF;
+            color: #fff;
+            border: 1px solid #1E9FFF;
+        }
+        .colorbox {
+            width: 50px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="earthContainer" style="width: 100%; height: 100%; background: grey">
+    <div id="vueApp" style="width: 100%; height: 100%; background: grey; position: relative;">
+        <earth-comp></earth-comp>
     </div>
     <script>
-        function startup() {
-            const earth = new XE.Earth('earthContainer');
+        // 1 创建Earth的vue组件
+        var EarthComp = {
+            template: `
+                <div style="width: 100%; height: 100%">
+                    <div ref="earthContainer" style="width: 100%; height: 100%">
+                    </div>
+                        <div class="box" style="position: absolute; left: 18px; top: 18px; color: white; background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 25px;min-width:200px; font-size:24px; font-family: 宋体;">
+                            <div class="defultbtn" :class="{'btnon':creating}" @click="creating = !creating">创建</div>
+                            <div class="defultbtn" style="margin-left:20px;" :class="{'btnon':editing}"  @click="editing = !editing">编辑</div><br/>
+                            <span @click="show = !show" class="checkbox"><input class="curvearrow" type="checkbox" v-model="show">曲线箭头显隐</span><br/>
+                            <span @click="ground = !ground" class="checkbox"><input class="curvearrow" type="checkbox" v-model="ground">是否贴地</span><br/>
+                            <span>宽度: {{ width }}像素</span><br/>
+                            <span><input type="range" min="0" max="100" step="1" v-model.number="width"></span><br/>
+                            <span>颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
+                        </div>
+                </div>
+            `,
+            data() {
+                return {
+                    _earth: undefined, // 注意：Earth和Cesium的相关变量放在vue中，必须使用下划线作为前缀！
+                    creating: false, // 创建
+                    editing: false, // 编辑
+                    show: true, // 显示
+                    ground: true, // 贴地
+                    width: 5 // 宽度
+                };
+            },
+            // 1.1 资源创建
+            mounted() {
+                // 1.1.1 创建地球
+                var earth = new XE.Earth(this.$refs.earthContainer);
+                earth.interaction.picking.enabled = true;
 
-            earth.sceneTree.root = {
-                "children": [
-                    {
-                        "czmObject": {
-                            "name": "默认离线影像",
-                            "xbsjType": "Imagery",
-                            "xbsjImageryProvider": {
-                                "createTileMapServiceImageryProvider": {
-                                    "url": XE.HTML.cesiumDir + 'Assets/Textures/NaturalEarthII',
-                                    "fileExtension": 'jpg',
-                                },
-                                "type": "createTileMapServiceImageryProvider"
-                            }
+                // 1.1.2 场景配置
+                earth.sceneTree.root = {
+                    "children": [
+                        {
+                            "czmObject": {
+                                "name": "默认离线影像",
+                                "xbsjType": "Imagery",
+                                "xbsjImageryProvider": {
+                                    "createTileMapServiceImageryProvider": {
+                                        "url": XE.HTML.cesiumDir + 'Assets/Textures/NaturalEarthII',
+                                        "fileExtension": 'jpg',
+                                    },
+                                    "type": "createTileMapServiceImageryProvider"
+                                }
+                            },
                         },
-                    },
-                    {
-                        "czmObject": {
-                            "xbsjType": "GeoDoubleArrow",
-                            "positions": [
-                                [1.6988083400554626, 0.6666896940162155, 0],
-                                [1.8894540756284692, 0.4816781350611851, 0],
-                                [2.040355433442242, 0.5944716085217513, 0],
-                                [1.9465554972958719, 0.7028689681340688, 0]
-                            ]
+                        {
+                            "ref": "curveArrow",
+                            "czmObject": {
+                                "xbsjType": "GeoCurveArrow",
+                                "positions": [
+                                    [1.6988083400554626, 0.6666896940162155, 0],
+                                    [1.8894540756284692, 0.4816781350611851, 0],
+                                    [2.040355433442242, 0.5944716085217513, 0],
+                                    [1.9465554972958719, 0.7028689681340688, 0]
+                                ]
+                            }
                         }
-                    }
-                ]
-            };
+                    ]
+                };
 
-            earth.camera.position = [1.9188878818218744, 0.41034917133138266, 2743555.2010588413];
-            earth.camera.rotation = [6.173738799303176, -1.1370075117293763, 0.000030663774100325725];
+                var curveArrow = earth.sceneTree.$refs.curveArrow.czmObject;
 
-            // only for Debug
-            window.earth = earth;
+                // 设置相机位置
+                // earth.camera.position.toString()和earth.camera.toAllJSONStr()这两个方法可获取相机位置
+                earth.camera.position = [1.9188878818218744, 0.41034917133138266, 2743555.2010588413];
+                earth.camera.rotation = [6.173738799303176, -1.1370075117293763, 0.000030663774100325725];
+
+                // 1.1.5 数据绑定
+                this._creatingUnbind = XE.MVVM.bind(this, 'creating', curveArrow, 'creating');
+                this._editingUnbind = XE.MVVM.bind(this, 'editing', curveArrow, 'editing');
+                this._showUnbind = XE.MVVM.bind(this, 'show', curveArrow, 'show');
+                this._groundUnbind = XE.MVVM.bind(this, 'ground', curveArrow, 'ground');
+                this._widthUnbind = XE.MVVM.bind(this, 'width', curveArrow, 'width');
+
+                this._earth = earth;
+
+                // only for Debug
+                window.curveArrow = curveArrow;
+                window.earth = earth;
+            },
+            methods: {
+                colorchange(event) {
+                    var color = event.target.value;
+                    curveArrow.color = color.xeColor;
+                }
+            },
+            // 1.2 资源销毁
+            beforeDestroy() {
+                // vue程序销毁时，需要清理相关资源
+                this._creatingUnbind = this._creatingUnbind && this._creatingUnbind();
+                this._editingUnbind = this._editingUnbind && this._editingUnbind();
+                this._showUnbind = this._showUnbind && this._showUnbind();
+                this._groundUnbind = this._groundUnbind && this._groundUnbind();
+                this._widthUnbind = this._widthUnbind && this._widthUnbind();
+                this._earth = this._earth && this._earth.destroy();
+            },
         }
 
-        // 1 XE.ready()会加载Cesium.js等其他资源，注意ready()返回一个Promise对象。
+        // 2 创建vue程序
+        // XE.ready()用来加载Cesium.js等相关资源
         XE.ready().then(() => {
             // 加载标绘插件
-            return XE.HTML.loadJS('http://localhost:8080/XbsjEarth-Plugins/plottingSymbol.js');
+            // return XE.HTML.loadJS('http://localhost:8080/XbsjEarth-Plugins/plottingSymbol.js');
+            return XE.HTML.loadJS('../../XbsjEarth-Plugins/plottingSymbol.js');
         }).then(() => {
-            startup()
-        });            
+            var app = new Vue({
+                el: '#vueApp',
+                components: {
+                    EarthComp,
+                },
+            });
+        });
     </script>
 </body>
 

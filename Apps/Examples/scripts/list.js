@@ -11,8 +11,12 @@ vueApp.examples = [
                 "url": "./startup-createEarthWithVue.html"
             },
             {
-                "title": "加载标绘插件",
+                "title": "加载标绘插件-曲线箭头",
                 "url": "./startup-curveArrow.html"
+            },
+            {
+                "title": "加载标绘插件-双箭头",
+                "url": "./startup-DoubleArrow.html"
             }
         ]
     }
