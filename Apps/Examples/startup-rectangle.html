@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="xbsj-labels" content="Earth起步"></meta>
-    <title>线状-折线箭头</title>
+    <title>面状-矩形</title>
     <!-- 0 引入js文件 -->
     <script src="../../XbsjEarth/XbsjEarth.js"></script>
     <script src="./scripts/vue.min.js"></script>
@@ -76,11 +76,15 @@
                         <div class="box" style="position: absolute; left: 18px; top: 18px; color: white; background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 25px;min-width:200px; font-size:24px; font-family: 宋体;">
                             <div class="defultbtn" :class="{'btnon':creating}" @click="creating = !creating">创建</div>
                             <div class="defultbtn" style="margin-left:20px;" :class="{'btnon':editing}"  @click="editing = !editing">编辑</div><br/>
-                            <span @click="show = !show" class="checkbox"><input class="curvearrow" type="checkbox" v-model="show">折线箭头显隐</span><br/>
+                            <span @click="show = !show" class="checkbox"><input class="curvearrow" type="checkbox" v-model="show">矩形显隐</span><br/>
+                            <span @click="outlineShow = !outlineShow" class="checkbox"><input class="curvearrow" type="checkbox" v-model="outlineShow">矩形边框显隐</span><br/>
                             <span @click="ground = !ground" class="checkbox"><input class="curvearrow" type="checkbox" v-model="ground">是否贴地</span><br/>
-                            <span>宽度: {{ width }}像素</span><br/>
-                            <span><input type="range" min="0" max="100" step="1" v-model.number="width"></span><br/>
-                            <span>颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
+                            <span>边框宽度: {{ outlineWidth }}像素</span><br/>
+                            <span><input type="range" min="0" max="100" step="1" v-model.number="outlineWidth"></span><br/>
+                            <span>填充颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
+                            <span>填充不透明度: {{ colors[3] }}</span><br/>
+                            <span><input type="range" min="0" max="1" step="0.1" v-model.number="colors[3]"></span><br/>
+                            <span>边框颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=outlineColorchange(event)><br/>
                         </div>
                 </div>
             `,
@@ -90,8 +94,10 @@
                     creating: false, // 创建
                     editing: false, // 编辑
                     show: true, // 显示
+                    outlineShow: true, //边框显示
                     ground: true, // 贴地
-                    width: 5 // 宽度
+                    outlineWidth: 5, // 宽度
+                    colors: [0, 0, 0, 0]
                 };
             },
             // 1.1 资源创建
@@ -117,21 +123,27 @@
                             },
                         },
                         {
-                            "ref": "polylineArrow",
+                            "ref": "rectangle",
                             "czmObject": {
-                                "xbsjType": "GeoPolylineArrow",
+                                "xbsjType": "GeoRectangle",
                                 "positions": [
-                                    [1.6988083400554626, 0.6666896940162155, 0],
-                                    [1.8894540756284692, 0.4816781350611851, 0],
-                                    [2.040355433442242, 0.5944716085217513, 0],
-                                    [1.9465554972958719, 0.7028689681340688, 0]
+                                    [
+                                        1.868533015215075,
+                                        0.5898823684977735,
+                                        9.313225746154785e-10
+                                    ],
+                                    [
+                                        1.9757697529080367,
+                                        0.5279778184137158,
+                                        1.3969838619232178e-9
+                                    ]
                                 ]
                             }
                         }
                     ]
                 };
 
-                var polylineArrow = earth.sceneTree.$refs.polylineArrow.czmObject;
+                var rectangle = earth.sceneTree.$refs.rectangle.czmObject;
 
                 // 设置相机位置
                 // earth.camera.position.toString()和earth.camera.toAllJSONStr()这两个方法可获取相机位置
@@ -139,22 +151,28 @@
                 earth.camera.rotation = [6.173738799303176, -1.1370075117293763, 0.000030663774100325725];
 
                 // 1.1.5 数据绑定
-                this._creatingUnbind = XE.MVVM.bind(this, 'creating', polylineArrow, 'creating');
-                this._editingUnbind = XE.MVVM.bind(this, 'editing', polylineArrow, 'editing');
-                this._showUnbind = XE.MVVM.bind(this, 'show', polylineArrow, 'show');
-                this._groundUnbind = XE.MVVM.bind(this, 'ground', polylineArrow, 'ground');
-                this._widthUnbind = XE.MVVM.bind(this, 'width', polylineArrow, 'width');
+                this._creatingUnbind = XE.MVVM.bind(this, 'creating', rectangle, 'creating');
+                this._editingUnbind = XE.MVVM.bind(this, 'editing', rectangle, 'editing');
+                this._showUnbind = XE.MVVM.bind(this, 'show', rectangle, 'show');
+                this._outlineShowUnbind = XE.MVVM.bind(this, 'outlineShow', rectangle, 'outlineShow');
+                this._groundUnbind = XE.MVVM.bind(this, 'ground', rectangle, 'ground');
+                this._outlineWidthUnbind = XE.MVVM.bind(this, 'outlineWidth', rectangle, 'outlineWidth');
+                this._colorsUnbind = XE.MVVM.bind(this, 'colors', rectangle, 'color');
 
                 this._earth = earth;
 
                 // only for Debug
-                window.polylineArrow = polylineArrow;
+                window.rectangle = rectangle;
                 window.earth = earth;
             },
             methods: {
                 colorchange(event) {
                     var color = event.target.value;
-                    polylineArrow.color = color.xeColor;
+                    rectangle.color = color.xeColor;
+                },
+                outlineColorchange(event) {
+                    var outlineColor = event.target.value;
+                    rectangle.outlineColor = outlineColor.xeColor;
                 }
             },
             // 1.2 资源销毁
@@ -163,8 +181,10 @@
                 this._creatingUnbind = this._creatingUnbind && this._creatingUnbind();
                 this._editingUnbind = this._editingUnbind && this._editingUnbind();
                 this._showUnbind = this._showUnbind && this._showUnbind();
+                this._outlineShowUnbind = this._outlineShowUnbind && this._outlineShowUnbind();
                 this._groundUnbind = this._groundUnbind && this._groundUnbind();
-                this._widthUnbind = this._widthUnbind && this._widthUnbind();
+                this._outlineWidthUnbind = this._outlineWidthUnbind && this._outlineWidthUnbind();
+                this._colorsUnbind = this._colorsUnbind && this_colorsUnbind();
                 this._earth = this._earth && this._earth.destroy();
             },
         }

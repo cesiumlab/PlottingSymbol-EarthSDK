@@ -3,6 +3,10 @@ vueApp.examples = [
         "title": "Earth起步",
         "list": [
             {
+                "title": "面状-圆",
+                "url": "./startup-circle.html"
+            },
+            {
                 "title": "创建地球",
                 "url": "./startup-createEarth.html"
             },
@@ -11,23 +15,31 @@ vueApp.examples = [
                 "url": "./startup-createEarthWithVue.html"
             },
             {
-                "title": "加载标绘插件-曲线箭头",
+                "title": "线状-曲线箭头",
                 "url": "./startup-curveArrow.html"
             },
             {
-                "title": "加载标绘插件-双箭头",
+                "title": "面状-双箭头",
                 "url": "./startup-doubleArrow.html"
             },
             {
-                "title": "加载标绘插件-折线箭头",
+                "title": "面状-多边形",
+                "url": "./startup-polygon.html"
+            },
+            {
+                "title": "线状-折线箭头",
                 "url": "./startup-polylineArrow.html"
             },
             {
-                "title": "加载标绘插件-扇形搜寻区",
+                "title": "面状-矩形",
+                "url": "./startup-rectangle.html"
+            },
+            {
+                "title": "线状-扇形搜寻区",
                 "url": "./startup-sectorSearch.html"
             },
             {
-                "title": "加载标绘插件-三角旗标",
+                "title": "面状-三角旗标",
                 "url": "./startup-triFlag.html"
             }
         ]
