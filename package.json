@@ -5,9 +5,11 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "dev2": "cross-env XBSJ_IMPORT=external webpack-dev-server --open --config webpack.dev.js",
     "xbsjDebug": "cross-env NODE_ENV=xbsjDebug webpack-dev-server --open --config webpack.dev.js",
     "xbsjDebug2": "cross-env NODE_ENV=xbsjDebug2 webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build2": "cross-env XBSJ_IMPORT=external webpack --config webpack.prod.js",
     "gallery": "node Tools/examples/gallery.js"
   },
   "keywords": [],
