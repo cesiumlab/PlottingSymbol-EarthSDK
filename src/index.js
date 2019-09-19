@@ -6,6 +6,7 @@ import GeoDoubleArrow from "./GeoDoubleArrow";
 import GeoRectangle from "./GeoRectangle";
 import GeoCircle from "./GeoCircle";
 import GeoPolygon from "./GeoPolygon";
+import GeoPin from "./GeoPin";
 
 XE.Obj.Plots = XE.Obj.Plots || {};
 
@@ -17,3 +18,4 @@ XE.Obj.Plots.GeoDoubleArrow = GeoDoubleArrow;
 XE.Obj.Plots.GeoRectangle = GeoRectangle;
 XE.Obj.Plots.GeoCircle = GeoCircle;
 XE.Obj.Plots.GeoPolygon = GeoPolygon;
+XE.Obj.Plots.GeoPin = GeoPin;
