@@ -11,7 +11,7 @@
     "build2": "cross-env XBSJ_IMPORT=external webpack --config webpack.prod.js",
     "gallery": "node Tools/examples/gallery.js",
     "login": "npm adduser --registry http://registry.npmjs.org",
-    "publish": "npm run build && npm publish --registry http://registry.npmjs.org"
+    "publish": "npm publish --registry http://registry.npmjs.org"
   },
   "keywords": [],
   "author": "cesiumlab",
