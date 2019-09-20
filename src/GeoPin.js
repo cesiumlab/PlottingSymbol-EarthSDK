@@ -8,7 +8,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
 
         this.disposers.push(XE.Earth.Interaction.InteractionProperty.registerPositionPicking(this._earth, this, {
             positionPickingProperty: 'creating',
-        }));        
+        }));  
 
         this._pin = new XE.Obj.Pin(earth);
         this.disposers.push(() => (this._pin = this._pin && this._pin.destroy()));
