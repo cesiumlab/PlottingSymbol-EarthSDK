@@ -21,6 +21,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
             this._pin.far = this.far;
             this._pin.disableDepthTestDistance = this.disableDepthTestDistance;
             this._pin.enabled = this.enabled;
+            this._pin.attachedPathGuid = this.attachedPathGuid;
         }));
 
         this._div = document.createElement("div");
@@ -73,10 +74,6 @@ class GeoPin extends XE.Core.XbsjCzmObj {
     }
 
     destroy() {
-        // let removepin = document.getElementById(this._pin.guid);
-        // if (removepin != null) {
-        //     removepin.parentNode.removeChild(removepin);
-        // }
         if (this._div) {
             this._div.parentNode.removeChild(this._div);
         }
@@ -89,6 +86,7 @@ GeoPin.defaultOptions = {
     viewDistance: 100.0,
     scale: 1.0,
     near: 0,
+    attachedPathGuid:'',
     far: Number.MAX_VALUE,
     disableDepthTestDistance: Number.MAX_VALUE, // POSITIVE_INFINITY转化为json时，会变成null！
     show: false,
