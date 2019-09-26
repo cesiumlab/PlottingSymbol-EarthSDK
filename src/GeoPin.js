@@ -23,6 +23,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
             this._pin.enabled = this.enabled;
             this._pin.cameraAttached = this.cameraAttached;
         }));
+        this.disposers.push(XE.MVVM.bind(this, 'cameraAttached', this, '_pin.cameraAttached'));
 
         this._div = document.createElement("div");
         this._div.id = this._pin.guid;
