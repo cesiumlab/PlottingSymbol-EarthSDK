@@ -22,6 +22,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
             this._pin.disableDepthTestDistance = this.disableDepthTestDistance;
             this._pin.enabled = this.enabled;
             this._pin.cameraAttached = this.cameraAttached;
+            this._pin.attachedPathGuid = this.attachedPathGuid;
         }));
         this.disposers.push(XE.MVVM.bind(this, 'cameraAttached', this, '_pin.cameraAttached'));
 
@@ -88,6 +89,7 @@ GeoPin.defaultOptions = {
     scale: 1.0,
     near: 0,
     cameraAttached:false,
+    attachedPathGuid:'',
     far: Number.MAX_VALUE,
     disableDepthTestDistance: Number.MAX_VALUE, // POSITIVE_INFINITY转化为json时，会变成null！
     show: false,
@@ -96,7 +98,7 @@ GeoPin.defaultOptions = {
     bottom:0px;position: absolute;color: white;
     background-size: 100% 100%;padding: 5px;
     border-radius: 5px;cursor:pointer;
-    background-image:url('../../Examples/images/dialog.png');">
+    background-image:url('./assets/dialog.png');">
 标记文字
 </div>`
 };
