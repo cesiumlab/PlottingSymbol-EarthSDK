@@ -1,6 +1,7 @@
+import PlotPolylineBase from './base/PlotPolylineBase';
 const Tool = XE.Tool;
 
-class GeoSectorSearch extends XE.Obj.PlotPolylineBase {
+class GeoSectorSearch extends PlotPolylineBase {
     constructor(earth, guid) {
         super(earth, guid);
 
