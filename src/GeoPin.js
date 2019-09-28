@@ -30,6 +30,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         this._div.id = this._pin.guid;
         this._div.innerHTML = this.innerHTML;
         this._div.style.position = "absolute";
+        this._div.style.pointerEvents = "none";
         let pin = this._pin;
         this.disposers.push(XE.MVVM.watch(
             () => [...pin.winPos],
@@ -40,36 +41,34 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         ));
         earth.czm.viewer.container.appendChild(this._div);
 
-        let c_position = earth.camera.position;
-        let distance = XE.Tool.Math.distance([this.position, c_position])
-        this.disposers.push(XE.MVVM.watch(() => {
-            if (this._pin.near <= distance && distance <= this._pin.far) {
+
+        this.disposers.push(XE.MVVM.watch(()=>{
+            return {
+                cameraPosition: [...earth.camera.position],
+                near:this.near,
+                far:this.far,
+                position: [...this.position],
+                enabled:this.enabled
+ 
+            }
+        }, s => {           
+            let distance = XE.Tool.Math.distance([s.position, s.cameraPosition])
+            if (s.near <= distance && distance <= s.far) {
                 this._div.style.display = "block";
             } else {
                 this._div.style.display = "none";
             }
-        }));
 
-        let earthcamera = earth.camera;
-        this.disposers.push(XE.MVVM.watch(earthcamera, 'position', () => {
-            let c_position = earth.camera.position;
-            let distance = XE.Tool.Math.distance([this.position, c_position])
-            if (this._pin.near <= distance && distance <= this._pin.far) {
+            if (s.enabled) {
                 this._div.style.display = "block";
             } else {
                 this._div.style.display = "none";
             }
+
         }));
 
-        //watch-enabled属性
-        this.disposers.push(XE.MVVM.watch(() => {
-            if (this._pin.enabled) {
-                this._div.style.display = "block";
-            } else {
-                this._div.style.display = "none";
-            }
-        }));
-
+        this._pin.show = false;
+ 
         this.disposers.push(XE.MVVM.watch(() => {
             this._div.innerHTML = this.innerHTML;
         }));
@@ -88,8 +87,8 @@ GeoPin.defaultOptions = {
     viewDistance: 100.0,
     scale: 1.0,
     near: 0,
-    cameraAttached:false,
-    attachedPathGuid:'',
+    cameraAttached: false,
+    attachedPathGuid: '',
     far: Number.MAX_VALUE,
     disableDepthTestDistance: Number.MAX_VALUE, // POSITIVE_INFINITY转化为json时，会变成null！
     show: false,
@@ -98,7 +97,7 @@ GeoPin.defaultOptions = {
     bottom:0px;position: absolute;color: white;
     background-size: 100% 100%;padding: 5px;
     border-radius: 5px;cursor:pointer;
-    background-image:url('./assets/dialog.png');">
+    background-image:url('../../XbsjEarth-Plugins/plottingSymbol/assets/dialog.png');">
 标记文字
 </div>`
 };
