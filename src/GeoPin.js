@@ -42,16 +42,16 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         earth.czm.viewer.container.appendChild(this._div);
 
 
-        this.disposers.push(XE.MVVM.watch(()=>{
+        this.disposers.push(XE.MVVM.watch(() => {
             return {
                 cameraPosition: [...earth.camera.position],
-                near:this.near,
-                far:this.far,
+                near: this.near,
+                far: this.far,
                 position: [...this.position],
-                enabled:this.enabled
- 
+                enabled: this.enabled
+
             }
-        }, s => {           
+        }, s => {
             let distance = XE.Tool.Math.distance([s.position, s.cameraPosition])
             if (s.near <= distance && distance <= s.far) {
                 this._div.style.display = "block";
@@ -68,7 +68,19 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         }));
 
         this._pin.show = false;
- 
+        this.defaultImgUrl = function () {
+            return XE.HTML.getScriptBaseUrl('plottingSymbol') + 'assets/dialog.png'
+        }
+
+        this.innerHTML = `<div
+        style="height:50px;width:100px;left:-76px;
+        bottom:0px;position: absolute;color: white;
+        background-size: 100% 100%;padding: 5px;
+        border-radius: 5px;cursor:pointer;
+        background-image:url('` + this.defaultImgUrl() + `');">
+    标记文字
+    </div>`
+
         this.disposers.push(XE.MVVM.watch(() => {
             this._div.innerHTML = this.innerHTML;
         }));
@@ -92,14 +104,8 @@ GeoPin.defaultOptions = {
     far: Number.MAX_VALUE,
     disableDepthTestDistance: Number.MAX_VALUE, // POSITIVE_INFINITY转化为json时，会变成null！
     show: false,
-    innerHTML: `<div
-    style="height:50px;width:100px;left:-76px;
-    bottom:0px;position: absolute;color: white;
-    background-size: 100% 100%;padding: 5px;
-    border-radius: 5px;cursor:pointer;
-    background-image:url('../../XbsjEarth-Plugins/plottingSymbol/assets/dialog.png');">
-标记文字
-</div>`
+    innerHTML: ``,
+    defaultImgUrl:Function
 };
 
 GeoPin.registerType(GeoPin, 'GeoPin');
