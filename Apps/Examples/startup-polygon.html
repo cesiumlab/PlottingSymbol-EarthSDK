@@ -208,7 +208,7 @@
         // XE.ready()用来加载Cesium.js等相关资源
         XE.ready().then(() => {
             // 加载标绘插件
-            return XE.HTML.loadJS('../../XbsjEarth-Plugins/plottingSymbol.js');
+            return XE.HTML.loadJS('../../XbsjEarth-Plugins/plottingSymbol/plottingSymbol.js');
         }).then(() => {
             var app = new Vue({
                 el: '#vueApp',

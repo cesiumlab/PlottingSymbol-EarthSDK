@@ -65,7 +65,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   output: {
-    filename: 'XbsjEarth-Plugins/[name].js',
+    filename: 'XbsjEarth-Plugins/plottingSymbol/[name].js',
     path: path.resolve(__dirname, 'dist')
   }
 };
