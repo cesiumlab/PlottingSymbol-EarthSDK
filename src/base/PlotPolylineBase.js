@@ -41,6 +41,10 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
     get fixedPositionsNum() {
         return this._fixedPositionsNum;
     }
+
+    flyTo() {
+        this._polyline.flyTo();
+    }    
 }
 
 PlotPolylineBase.defaultOptions = {
