@@ -24,11 +24,11 @@ module.exports = {
         to: 'XbsjEarth',
         toType: 'dir'
       },
-      // {
-      //   from: 'Static/assets',
-      //   to: 'XbsjEarthUI/assets',
-      //   toType: 'dir'
-      // },
+      {
+        from: 'Static/assets',
+        to: 'XbsjEarth-Plugins/plottingSymbol/assets',
+        toType: 'dir'
+      },
       {
         from: 'Apps',
         to: 'Apps',
