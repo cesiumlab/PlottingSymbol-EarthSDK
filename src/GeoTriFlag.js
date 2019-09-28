@@ -1,6 +1,7 @@
+import PlotPolygonBase from './base/PlotPolygonBase';
 const Tool = XE.Tool;
 
-class GeoTriFlag extends XE.Obj.PlotPolygonBase {
+class GeoTriFlag extends PlotPolygonBase {
     constructor(earth, guid) {
         super(earth, guid);
 

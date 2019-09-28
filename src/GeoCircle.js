@@ -1,6 +1,8 @@
+import PlotPolygonBase from './base/PlotPolygonBase';
+
 const Tool = XE.Tool;
 
-class GeoCircle extends XE.Obj.PlotPolygonBase {
+class GeoCircle extends PlotPolygonBase {
   constructor(earth, guid) {
     super(earth, guid);
 
