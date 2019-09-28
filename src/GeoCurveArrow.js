@@ -1,4 +1,4 @@
-import PlotPolygonBase from './base/PlotPolygonBase';
+import PlotPolylineBase from './base/PlotPolylineBase';
 
 const Tool = XE.Tool;
 

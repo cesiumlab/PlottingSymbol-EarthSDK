@@ -23,7 +23,7 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
         }
 
         updatePolyline();
-        this.disposers.push(reaction(() => {
+        this.disposers.push(XE.MVVM.watch(() => {
             return {
                 show: this.show,
                 polylineShow: this._polylineShow,
@@ -49,7 +49,5 @@ PlotPolylineBase.defaultOptions = {
     width: 5.0,
     color: [0, 1, 0, 1],
 };
-        
-PlotPolylineBase.registerType(PlotPolylineBase, 'PlotPolylineBase');
 
 export default PlotPolylineBase;

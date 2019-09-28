@@ -27,7 +27,7 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
         }
 
         updatePolygon();
-        this.disposers.push(reaction(() => {
+        this.disposers.push(XE.MVVM.watch(() => {
             return {
                 show: this._polygonShow && this.show,
                 width: this.width,
@@ -57,7 +57,5 @@ PlotPolygonBase.defaultOptions = {
     outlineColor: [0, 1, 0, 1],
     outlineShow: true,
 };
-        
-PlotPolygonBase.registerType(PlotPolygonBase, 'PlotPolygonBase');
 
 export default PlotPolygonBase;
