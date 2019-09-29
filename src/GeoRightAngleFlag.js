@@ -1,6 +1,8 @@
+import PlotPolygonBase from './base/PlotPolygonBase';
+
 const Tool = XE.Tool;
 
-class GeoRightAngleFlag extends XE.Obj.PlotPolygonBase {
+class GeoRightAngleFlag extends PlotPolygonBase {
   constructor(earth, guid) {
     super(earth, guid);
 
