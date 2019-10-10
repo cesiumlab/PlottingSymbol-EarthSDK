@@ -44,13 +44,12 @@ class GeoCurveFlag extends PlotPolygonBase {
       const d = positions[1][0] - positions[0][0]; //两点之间的垂直距离
       //this._polygonPositions.push((positions[0][0] + positions[1][0]) * 0.5, positions[0][1] - d * 0.1); //上曲线最低点
 
-
+      // 左上角曲线
       const leftBottom = [positions[0][0], positions[0][1], 0];
       const rightBottom = [(positions[0][0] + positions[1][0]) * 0.5, positions[0][1] - d * 0.1, 0];
-      const rightTop = [(positions[0][0] + positions[1][0]) * 0.5-2*d, positions[0][1] - d * 0.1, 0]
+      const rightTop = [(positions[0][0] + positions[1][0]) * 0.5 - 2 * d, positions[0][1] - d * 0.8, 0]
       const leftTop = [positions[0][0], positions[0][1] - d, 0];
 
-      // 左上角曲线
       const bottomCenter = Tool.Math.geoLerp(leftBottom, rightBottom, 0.9, this._keyPositions[4]);
       const topCenter = Tool.Math.geoLerp(rightTop, leftTop, 0.9, this._keyPositions[5]);
       const bottomKeyPos = Tool.Math.geoLerp(bottomCenter, topCenter, 0.2, this._keyPositions[6]);
@@ -82,8 +81,8 @@ class GeoCurveFlag extends PlotPolygonBase {
       //右下角曲线
       const tleftBottom = [positions[1][0], 0.5 * (positions[0][1] + positions[1][1]), 0];
       const trightBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5 - d * 0.1, 0];
-      const trightTop = [positions[1][0] - d, 0.5 * (positions[0][1] + positions[1][1]) + d, 0]
-      const tleftTop = [positions[1][0], 0.5 * (positions[0][1] + positions[1][1]) - d, 0];
+      const trightTop = [positions[1][0] - d, 0.5 * (positions[0][1] + positions[1][1]) + 0.5 * d, 0]
+      const tleftTop = [positions[1][0] - 2 * d, 0.5 * (positions[0][1] + positions[1][1]) - 2 * d, 0];
 
       const tbottomCenter = Tool.Math.geoLerp(tleftBottom, trightBottom, 0.1, this._keyPositions[7]);
       const ttopCenter = Tool.Math.geoLerp(trightTop, tleftTop, 0.1, this._keyPositions[8]);
@@ -99,8 +98,8 @@ class GeoCurveFlag extends PlotPolygonBase {
 
       //左下角曲线
       const fleftBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5 - d * 0.1, 0];
-      const frightBottom =[positions[0][0] + 0.01 * d, 0.5 * (positions[0][1] + positions[1][1]), 0] ;
-      const frightTop = [(positions[0][0] + positions[1][0]) * 0.5 +3*d, (positions[0][1] + positions[1][1]) * 0.5 - d * 0.1, 0]
+      const frightBottom = [positions[0][0] + 0.01 * d, 0.5 * (positions[0][1] + positions[1][1]), 0];
+      const frightTop = [(positions[0][0] + positions[1][0]) * 0.5 + 5 * d, (positions[0][1] + positions[1][1]) * 0.5 - d * 1.1, 0]
       const fleftTop = [positions[0][0] + 1.01 * d, 0.5 * (positions[0][1] + positions[1][1]) - d, 0];
 
       const fbottomCenter = Tool.Math.geoLerp(fleftBottom, frightBottom, 0.9, this._keyPositions[4]);
@@ -108,7 +107,7 @@ class GeoCurveFlag extends PlotPolygonBase {
       const fbottomKeyPos = Tool.Math.geoLerp(fbottomCenter, ftopCenter, 0.2, this._keyPositions[6]);
       Tool.Math.Bezier.bezier2(fleftBottom, fbottomKeyPos, frightBottom, 19, this._fbottomCurcePositions);
 
-      this._fbottomCurcePositions.forEach(e => { //第3到22个点
+      this._fbottomCurcePositions.forEach(e => { //第65到85个点
         this._polygonPositions.push(e[0], e[1]);
       });
 
