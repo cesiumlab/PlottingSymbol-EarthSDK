@@ -41,6 +41,10 @@ vueApp.examples = [
             {
                 "title": "面状-三角旗标",
                 "url": "./startup-triFlag.html"
+            },
+            {
+                "title": "面状-直角旗标",
+                "url": "./startup-rightAngleFlag.html"
             }
         ]
     }

@@ -46,7 +46,7 @@ class GeoCurveFlag extends PlotPolygonBase {
 
       // 左上角曲线
       const leftBottom = [positions[0][0], positions[0][1], 0];
-      const rightBottom = [(positions[0][0] + positions[1][0]) * 0.5, positions[0][1] - d * 0.1, 0];
+      const rightBottom = [(positions[0][0] + positions[1][0]) * 0.5, positions[0][1], 0];
       const rightTop = [(positions[0][0] + positions[1][0]) * 0.5 - 2 * d, positions[0][1] - d * 0.8, 0]
       const leftTop = [positions[0][0], positions[0][1] - d, 0];
 
@@ -60,7 +60,7 @@ class GeoCurveFlag extends PlotPolygonBase {
       });
 
       // 右上角曲线
-      const sleftBottom = [(positions[0][0] + positions[1][0]) * 0.5, positions[0][1] - d * 0.1, 0];
+      const sleftBottom = [(positions[0][0] + positions[1][0]) * 0.5, positions[0][1], 0];
       const srightBottom = [positions[1][0], positions[0][1], 0];
       const srightTop = [(positions[0][0] + positions[1][0]) * 0.5 + d, positions[0][1] - d * 0.1 + d, 0]
       const sleftTop = [positions[0][0], positions[0][1] - d, 0];
@@ -80,7 +80,7 @@ class GeoCurveFlag extends PlotPolygonBase {
 
       //右下角曲线
       const tleftBottom = [positions[1][0], 0.5 * (positions[0][1] + positions[1][1]), 0];
-      const trightBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5 - d * 0.1, 0];
+      const trightBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5, 0];
       const trightTop = [positions[1][0] - d, 0.5 * (positions[0][1] + positions[1][1]) + 0.5 * d, 0]
       const tleftTop = [positions[1][0] - 2 * d, 0.5 * (positions[0][1] + positions[1][1]) - 2 * d, 0];
 
@@ -97,7 +97,7 @@ class GeoCurveFlag extends PlotPolygonBase {
 
 
       //左下角曲线
-      const fleftBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5 - d * 0.1, 0];
+      const fleftBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5, 0];
       const frightBottom = [positions[0][0] + 0.01 * d, 0.5 * (positions[0][1] + positions[1][1]), 0];
       const frightTop = [(positions[0][0] + positions[1][0]) * 0.5 + 5 * d, (positions[0][1] + positions[1][1]) * 0.5 - d * 1.1, 0]
       const fleftTop = [positions[0][0] + 1.01 * d, 0.5 * (positions[0][1] + positions[1][1]) - d, 0];
