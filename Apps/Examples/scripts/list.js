@@ -45,6 +45,10 @@ vueApp.examples = [
             {
                 "title": "面状-直角旗标",
                 "url": "./startup-rightAngleFlag.html"
+            },
+            {
+                "title": "面状-曲面旗标",
+                "url": "./startup-curveFlag.html"
             }
         ]
     }
