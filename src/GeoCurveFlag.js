@@ -82,7 +82,7 @@ class GeoCurveFlag extends PlotPolygonBase {
       const tleftBottom = [positions[1][0], 0.5 * (positions[0][1] + positions[1][1]), 0];
       const trightBottom = [(positions[0][0] + positions[1][0]) * 0.5, (positions[0][1] + positions[1][1]) * 0.5, 0];
       const trightTop = [positions[1][0] - d, 0.5 * (positions[0][1] + positions[1][1]) + 0.5 * d, 0]
-      const tleftTop = [positions[1][0] - 2 * d, 0.5 * (positions[0][1] + positions[1][1]) - 2 * d, 0];
+      const tleftTop = [positions[1][0] - 6 * d, 0.5 * (positions[0][1] + positions[1][1]) + 2*d, 0];
 
       const tbottomCenter = Tool.Math.geoLerp(tleftBottom, trightBottom, 0.1, this._keyPositions[7]);
       const ttopCenter = Tool.Math.geoLerp(trightTop, tleftTop, 0.1, this._keyPositions[8]);
