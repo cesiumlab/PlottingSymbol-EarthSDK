@@ -9,6 +9,7 @@ import GeoPolygon from "./GeoPolygon";
 import GeoPin from "./GeoPin";
 import GeoRightAngleFlag from "./GeoRightAngleFlag";
 import GeoCurveFlag from "./GeoCurveFlag";
+import GeoPolyline from "./GeoPolyline";
 
 
 XE.Obj.Plots = XE.Obj.Plots || {};
@@ -24,5 +25,7 @@ XE.Obj.Plots.GeoPolygon = GeoPolygon;
 XE.Obj.Plots.GeoPin = GeoPin;
 XE.Obj.Plots.GeoRightAngleFlag = GeoRightAngleFlag;
 XE.Obj.Plots.GeoCurveFlag = GeoCurveFlag;
+XE.Obj.Plots.GeoPolyline = GeoPolyline;
+
 
 
