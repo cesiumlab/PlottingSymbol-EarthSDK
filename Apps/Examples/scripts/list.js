@@ -3,6 +3,10 @@ vueApp.examples = [
         "title": "Earth起步",
         "list": [
             {
+                "title": "线状-圆弧",
+                "url": "./startup-arc.html"
+            },
+            {
                 "title": "面状-圆",
                 "url": "./startup-circle.html"
             },
