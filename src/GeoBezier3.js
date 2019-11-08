@@ -5,6 +5,9 @@ class GeoBezier3 extends PlotPolylineBase {
     constructor(earth, guid) {
         super(earth, guid);
 
+        this._onlyMove = true;
+        this._fixedPositionsNum = 4;
+
         this._polylineShow = true;
 
         this._bezierPositions = (new Array(20)).fill(0).map(e => [0, 0, 0]);
