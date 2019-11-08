@@ -7,6 +7,14 @@ vueApp.examples = [
                 "url": "./startup-arc.html"
             },
             {
+                "title": "线状-贝塞尔2次曲线",
+                "url": "./startup-bezier2.html"
+            },
+            {
+                "title": "线状-贝塞尔3次曲线",
+                "url": "./startup-bezier3.html"
+            },
+            {
                 "title": "面状-圆",
                 "url": "./startup-circle.html"
             },

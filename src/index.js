@@ -11,6 +11,8 @@ import GeoRightAngleFlag from "./GeoRightAngleFlag";
 import GeoCurveFlag from "./GeoCurveFlag";
 import GeoPolyline from "./GeoPolyline";
 import GeoArc from "./GeoArc";
+import GeoBezier2 from "./GeoBezier2";
+import GeoBezier3 from "./GeoBezier3";
 
 
 XE.Obj.Plots = XE.Obj.Plots || {};
@@ -28,6 +30,6 @@ XE.Obj.Plots.GeoRightAngleFlag = GeoRightAngleFlag;
 XE.Obj.Plots.GeoCurveFlag = GeoCurveFlag;
 XE.Obj.Plots.GeoPolyline = GeoPolyline;
 XE.Obj.Plots.GeoArc = GeoArc;
-
-
+XE.Obj.Plots.GeoBezier2 = GeoBezier2;
+XE.Obj.Plots.GeoBezier3 = GeoBezier3;
 
