@@ -59,6 +59,10 @@ vueApp.examples = [
                 "url": "./startup-rightAngleFlag.html"
             },
             {
+                "title": "面状-扇形",
+                "url": "./startup-sector.html"
+            },
+            {
                 "title": "线状-扇形搜寻区",
                 "url": "./startup-sectorSearch.html"
             },
