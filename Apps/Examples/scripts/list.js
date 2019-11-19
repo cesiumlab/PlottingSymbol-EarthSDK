@@ -39,6 +39,10 @@ vueApp.examples = [
                 "url": "./startup-doubleArrow.html"
             },
             {
+                "title": "线状-平行搜寻区",
+                "url": "./startup-parallelSearch.html"
+            },
+            {
                 "title": "面状-多边形",
                 "url": "./startup-polygon.html"
             },
