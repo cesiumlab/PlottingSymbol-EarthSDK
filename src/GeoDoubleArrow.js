@@ -24,7 +24,7 @@ class GeoDoubleArrow extends PlotPolygonBase {
         }, positions => {
             const l = positions.length;
             
-            if (l < 3) {
+            if (l < 3 || (l === 3 && Tool.Math.hasSamePosition(positions))) {
                 this._polygonShow = false;
                 return;
             }
