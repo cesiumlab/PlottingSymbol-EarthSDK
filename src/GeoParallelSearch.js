@@ -5,8 +5,6 @@ class GeoParallelSearch extends PlotPolylineBase {
     constructor(earth, guid) {
         super(earth, guid);
 
-        this._polylineShow = true;
-
         this._leftArrowPosition = [0, 0, 0];
         this._rightArrowPosition = [0, 0, 0];
         this._leftArrowPosition2 = [0, 0, 0];

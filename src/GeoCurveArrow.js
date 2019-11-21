@@ -6,8 +6,6 @@ class GeoCurveArrow extends PlotPolylineBase {
     constructor(earth, guid) {
         super(earth, guid);
 
-        this._polylineShow = true;
-        
         this._leftArrowPosition = [0, 0, 0];
         this._rightArrowPosition = [0, 0, 0];
         this._positions = [];
@@ -17,7 +15,7 @@ class GeoCurveArrow extends PlotPolylineBase {
             const l = positions.length;
             const d = Tool.Math.distance(positions);
             
-            if (l < 2 || Tool.Math.hasSamePosition(positions)) {
+            if (l < 2) {
                 this._polylineShow = false;
                 return;
             }

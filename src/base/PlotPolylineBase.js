@@ -6,7 +6,7 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
         this._fixedPositionsNum = undefined;
 
         XE.MVVM.extend(this, {
-            _polylineShow: false,
+            _polylineShow: true,
         });
 
         this._polyline = new XE.Obj.Polyline(earth);

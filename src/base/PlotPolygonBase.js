@@ -6,7 +6,7 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
         this._fixedPositionsNum = undefined;
 
         XE.MVVM.extend(this, {
-            _polygonShow: false,
+            _polygonShow: true, // 内部决定是否显示
         });
 
         this._polygon = new XE.Obj.Polygon(earth);

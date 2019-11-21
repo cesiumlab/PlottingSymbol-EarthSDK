@@ -5,8 +5,6 @@ class GeoPolygon extends PlotPolygonBase {
   constructor(earth, guid) {
     super(earth, guid);
 
-    this._polygonShow = true;
-
     this._pgPositions = [];
     this.disposers.push(
       XE.MVVM.watch(
@@ -16,11 +14,6 @@ class GeoPolygon extends PlotPolygonBase {
         positions => {
           const l = positions.length;
 
-          if (l < 2 || Tool.Math.hasSamePosition(positions)) {
-            this._polygonShow = false;
-            return;
-          }
-
           this._pgPositions.length = 0;
           positions.forEach(e => {
             this._pgPositions.push(e[0], e[1]);
@@ -28,8 +21,6 @@ class GeoPolygon extends PlotPolygonBase {
 
           this._polygon.positions = this._pgPositions;
           this._polygon.height = positions[0][2];
-
-          this._polygonShow = true;
         }
       )
     );

@@ -6,9 +6,7 @@ class GeoArc extends PlotPolylineBase {
         super(earth, guid);
 
         this._onlyMove = true;
-        this._fixedPositionsNum = 3;
-
-        this._polylineShow = true;
+        this._fixedPositionsNum = 3; // 只有三个点
 
         this._polylinePositions = new Array(360).fill(0).map(e => [0, 0, 0]);
         this._pgPositions = [];
@@ -22,7 +20,7 @@ class GeoArc extends PlotPolylineBase {
                 positions => {
                     const l = positions.length;
 
-                    if (l < 3 || Tool.Math.hasSamePosition(positions)) {
+                    if (l < 3) {
                         this._polylineShow = false;
                         return;
                     }
