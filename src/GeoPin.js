@@ -33,7 +33,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         this._div.style.pointerEvents = "none";
         let pin = this._pin;
         this.disposers.push(XE.MVVM.watch(
-            () => [...pin.winPos],
+            () => [...pin.winPos], // winPos是一个有四个元素的数组，分别指示 [left, top, right, bottom]
             winPos => {
                 this._div.style.left = winPos[0] + "px";
                 this._div.style.bottom = winPos[3] + "px";
