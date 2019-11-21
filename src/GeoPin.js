@@ -36,7 +36,7 @@ class GeoPin extends XE.Core.XbsjCzmObj {
             () => [...pin.winPos],
             winPos => {
                 this._div.style.left = winPos[0] + "px";
-                this._div.style.bottom = winPos[1] + "px";
+                this._div.style.bottom = winPos[3] + "px";
             }
         ));
         earth.czm.viewer.container.appendChild(this._div);
