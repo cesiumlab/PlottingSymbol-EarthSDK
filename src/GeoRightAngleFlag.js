@@ -9,8 +9,6 @@ class GeoRightAngleFlag extends PlotPolygonBase {
     this._onlyMove = true;
     this._fixedPositionsNum = 2;
 
-    this._polygonShow = true;
-
     this._polygonPositions = [];
     this._hpr = [0, 0, 0];
 
@@ -23,7 +21,7 @@ class GeoRightAngleFlag extends PlotPolygonBase {
     }, positions => {
       const l = positions.length;
 
-      if (l < 2 || Tool.Math.hasSamePosition(positions)) {
+      if (l < 2) {
         this._polygonShow = false;
         return;
       }

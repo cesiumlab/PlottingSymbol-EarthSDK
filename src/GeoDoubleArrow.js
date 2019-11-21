@@ -9,8 +9,6 @@ class GeoDoubleArrow extends PlotPolygonBase {
         this._onlyMove = true;
         this._fixedPositionsNum = 4;
 
-        this._polygonShow = true;
-
         this._keyPositions = (new Array(50)).fill(0).map(e => [0, 0, 0]);
         this._bottomCurcePositions = (new Array(20)).fill(0).map(e => [0, 0, 0]);
         this._leftArrowLeftPositions = (new Array(20)).fill(0).map(e => [0, 0, 0]);
@@ -26,7 +24,7 @@ class GeoDoubleArrow extends PlotPolygonBase {
         }, positions => {
             const l = positions.length;
             
-            if (l < 3 || Tool.Math.hasSamePosition(positions)) {
+            if (l < 3) {
                 this._polygonShow = false;
                 return;
             }

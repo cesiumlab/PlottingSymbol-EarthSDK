@@ -9,12 +9,8 @@ class GeoCurveFlag extends PlotPolygonBase {
     this._onlyMove = true;
     this._fixedPositionsNum = 2;
 
-    this._polygonShow = true;
-
     this._polygonPositions = [];
     this._hpr = [0, 0, 0];
-
-
 
     this._keyPositions = (new Array(50)).fill(0).map(e => [0, 0, 0]);
 
@@ -24,13 +20,12 @@ class GeoCurveFlag extends PlotPolygonBase {
     this._fbottomCurcePositions = (new Array(20)).fill(0).map(e => [0, 0, 0]);
 
 
-
     this.disposers.push(XE.MVVM.watch(() => {
       return [...this.positions.map(e => [...e])];
     }, positions => {
       const l = positions.length;
 
-      if (l < 2 || Tool.Math.hasSamePosition(positions)) {
+      if (l < 2) {
         this._polygonShow = false;
         return;
       }

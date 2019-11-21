@@ -8,8 +8,6 @@ class GeoRectangle extends PlotPolygonBase {
     this._onlyMove = true;
     this._fixedPositionsNum = 2;
 
-    this._polygonShow = true;
-
     this._polygonPositions = new Array(4).fill(0).map(e => [0, 0, 0]);
     this._pgPositions = [];
     this._nextPosition = [0, 0, 0];
@@ -22,7 +20,7 @@ class GeoRectangle extends PlotPolygonBase {
         positions => {
           const l = positions.length;
 
-          if (l < 2 || Tool.Math.hasSamePosition(positions)) {
+          if (l < 2) {
             this._polygonShow = false;
             return;
           }
