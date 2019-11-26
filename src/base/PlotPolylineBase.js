@@ -20,6 +20,7 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
             this._polyline.width = this.width;
             this._polyline.material.XbsjColorMaterial.color = this.color;
             this._polyline.ground = this.ground;
+            this._polyline.depthTest = this.depthTest;
         }
 
         updatePolyline();
@@ -30,6 +31,7 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
                 width: this.width,
                 color: [...this.color],
                 ground: this.ground,
+                depthTest: this.depthTest,
             }
         }, () => updatePolyline()));
     }
@@ -52,6 +54,7 @@ PlotPolylineBase.defaultOptions = {
     show: true,
     width: 5.0,
     color: [0, 1, 0, 1],
+    depthTest: false,
 };
 
 export default PlotPolylineBase;
