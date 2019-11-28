@@ -14,6 +14,10 @@ class GeoPolygon extends PlotPolygonBase {
         positions => {
           const l = positions.length;
 
+          if (l <= 1) {
+            return;
+          }
+
           this._pgPositions.length = 0;
           positions.forEach(e => {
             this._pgPositions.push(e[0], e[1]);
