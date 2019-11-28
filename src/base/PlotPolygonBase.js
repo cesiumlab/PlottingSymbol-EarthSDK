@@ -24,6 +24,7 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
             this._polygon.outline.width = this.outlineWidth;
             this._polygon.outline.color = this.outlineColor;
             this._polygon.outline.show = this.outlineShow;
+            this._polygon.depthTest = this.depthTest;
         }
 
         updatePolygon();
@@ -36,6 +37,7 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
                 outlineWidth: this.outlineWidth,
                 outlineColor: this.outlineColor,
                 outlineShow: this.outlineShow,
+                depthTest: this.depthTest,
             }
         }, () => updatePolygon()));
     }
@@ -60,6 +62,7 @@ PlotPolygonBase.defaultOptions = {
     outlineWidth: 2.0,
     outlineColor: [0, 1, 0, 1],
     outlineShow: true,
+    depthTest: false, // 深度测试，当开启地形透明时，建议开启
 };
 
 export default PlotPolygonBase;
