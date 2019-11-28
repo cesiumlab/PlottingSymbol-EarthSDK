@@ -15,6 +15,19 @@ class PlotPolylineBase extends XE.Obj.PlotBase {
         });
         this._polyline.show = this._polylineShow && this.show;
 
+        this._polyline.onclick = (...params) => {
+            return this.onclick && this.onclick(...params);
+        };
+        this._polyline.onclickout = (...params) => {
+            return this.onclickout && this.onclickout(...params);
+        };
+        this._polyline.onmouseover = (...params) => {
+            return this.onmouseover && this.onmouseover(...params);
+        };
+        this._polyline.onmouseout = (...params) => {
+            return this.onmouseout && this.onmouseout(...params);
+        };
+
         const updatePolyline = () => {
             this._polyline.show = this._polylineShow && this.show;
             this._polyline.width = this.width;
