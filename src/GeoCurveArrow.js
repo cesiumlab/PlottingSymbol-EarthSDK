@@ -26,6 +26,10 @@ class GeoCurveArrow extends PlotPolylineBase {
             const ll = this._positions.length;
 
             const hpr = Tool.Math.hpr(this._positions[ll-1], this._positions[ll-2]);
+            if (!hpr) {
+                this._polylineShow = false;
+                return;
+            }
             Tool.Math.geoMove(this._positions[ll-1], hpr[0] + Math.PI/6, d * 0.05, this._leftArrowPosition);
             Tool.Math.geoMove(this._positions[ll-1], hpr[0] - Math.PI/6, d * 0.05, this._rightArrowPosition);
 
