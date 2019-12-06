@@ -15,6 +15,7 @@ import GeoBezier2 from "./GeoBezier2";
 import GeoBezier3 from "./GeoBezier3";
 import GeoSector from "./GeoSector";
 import GeoParallelSearch from "./GeoParallelSearch";
+import GeoCurve from "./GeoCurve";
 
 
 XE.Obj.Plots = XE.Obj.Plots || {};
@@ -36,3 +37,4 @@ XE.Obj.Plots.GeoBezier2 = GeoBezier2;
 XE.Obj.Plots.GeoBezier3 = GeoBezier3;
 XE.Obj.Plots.GeoSector = GeoSector;
 XE.Obj.Plots.GeoParallelSearch = GeoParallelSearch;
+XE.Obj.Plots.GeoCurve = GeoCurve;

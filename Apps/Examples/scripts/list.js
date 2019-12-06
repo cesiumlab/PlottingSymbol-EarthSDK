@@ -27,6 +27,10 @@ vueApp.examples = [
                 "url": "./startup-createEarthWithVue.html"
             },
             {
+                "title": "线状-曲线",
+                "url": "./startup-curve.html"
+            },
+            {
                 "title": "线状-曲线箭头",
                 "url": "./startup-curveArrow.html"
             },
