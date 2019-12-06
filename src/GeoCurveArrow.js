@@ -10,8 +10,11 @@ class GeoCurveArrow extends PlotPolylineBase {
         this._rightArrowPosition = [0, 0, 0];
         this._positions = [];
         this.disposers.push(XE.MVVM.watch(() => {
-            return [...this.positions.map(e => [...e])];
-        }, positions => {
+            return {
+                positions: [...this.positions.map(e => [...e])],
+                slices: this.slices,
+            }
+        }, ({ positions, slices }) => {
             const l = positions.length;
             const d = Tool.Math.distance(positions);
             
@@ -21,7 +24,7 @@ class GeoCurveArrow extends PlotPolylineBase {
             }
 
             this._positions.length = 0;
-            Tool.Math.interpolatePositions(positions, 100, false, this._positions);
+            Tool.Math.interpolatePositions(positions, slices, false, this._positions);
 
             const ll = this._positions.length;
 
@@ -44,6 +47,17 @@ class GeoCurveArrow extends PlotPolylineBase {
         }));
     }
 }
+
+GeoCurveArrow.defaultOptions = {
+    /**
+     * 曲线分段数
+     * @type {number}
+     * @instance
+     * @default 100
+     * @memberof XE.Obj.Plots.GeoCurveArrow
+     */
+    slices: 100
+};
         
 GeoCurveArrow.registerType(GeoCurveArrow, 'GeoCurveArrow');
 
