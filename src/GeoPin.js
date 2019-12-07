@@ -69,7 +69,8 @@ class GeoPin extends XE.Core.XbsjCzmObj {
 
         this._pin.show = false;
         this.defaultImgUrl = function () {
-            return XE.HTML.getScriptBaseUrl('plottingSymbol') + 'assets/dialog.png'
+            // return XE.HTML.getScriptBaseUrl('plottingSymbol') + 'assets/dialog.png'
+            return './assets/dialog.png'
         }
 
         this.innerHTML = `<div
@@ -105,7 +106,7 @@ GeoPin.defaultOptions = {
     disableDepthTestDistance: Number.MAX_VALUE, // POSITIVE_INFINITY转化为json时，会变成null！
     show: false,
     innerHTML: ``,
-    defaultImgUrl:Function
+    defaultImgUrl: Function
 };
 
 GeoPin.registerType(GeoPin, 'GeoPin');
