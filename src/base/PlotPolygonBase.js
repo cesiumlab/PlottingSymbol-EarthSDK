@@ -1,3 +1,5 @@
+
+
 class PlotPolygonBase extends XE.Obj.PlotBase {
     constructor(earth, guid) {
         super(earth, guid);
@@ -15,18 +17,7 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
         });
         this._polygon.show = this._polygonShow && this.show;
 
-        this._polygon.onclick = (...params) => {
-            return this.onclick && this.onclick(...params);
-        };
-        this._polygon.onclickout = (...params) => {
-            return this.onclickout && this.onclickout(...params);
-        };
-        this._polygon.onmouseover = (...params) => {
-            return this.onmouseover && this.onmouseover(...params);
-        };
-        this._polygon.onmouseout = (...params) => {
-            return this.onmouseout && this.onmouseout(...params);
-        };
+        XE.Earth.Interaction.Picking.registerPickingParent(this._polygon, this);
 
         const updatePolygon = () => {
             this._polygon.show = this._polygonShow && this.show;
