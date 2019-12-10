@@ -32,6 +32,9 @@ class GeoRectangle extends PlotPolygonBase {
           this._polygonPositions.push([...positions[1]]);
 
           const hpr = Tool.Math.hpr(positions[0], positions[1]);
+          if (!hpr) {
+            return;
+          }
 
           const slice = 4;
 
