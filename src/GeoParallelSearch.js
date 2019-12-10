@@ -31,6 +31,9 @@ class GeoParallelSearch extends PlotPolylineBase {
                         }
                     }
                     const hpr = Tool.Math.hpr(positions[i], positions[i - 1]);
+                    if (!hpr) {
+                        return;
+                    }
                     Tool.Math.geoMove(positions[i], hpr[0] + Math.PI / 6, Tool.Math.distance(positions[i - 1], positions[i]) * 0.1, this._leftArrowPosition);
                     Tool.Math.geoMove(positions[i], hpr[0] - Math.PI / 6, Tool.Math.distance(positions[i - 1], positions[i]) * 0.1, this._rightArrowPosition);
                     positions.push([...positions[i]]);

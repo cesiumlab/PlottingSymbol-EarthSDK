@@ -43,6 +43,11 @@ class GeoSectorSearch extends PlotPolylineBase {
                                 positions[1],
                                 this._scratchHpr
                             );
+
+                            if (!hpr) {
+                                return;
+                            }
+
                             for (let i = 0; i < 6; ++i) {
                                 Tool.Math.geoMove(
                                     positions[0],
