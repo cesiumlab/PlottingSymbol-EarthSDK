@@ -33,7 +33,7 @@ class GeoSector extends PlotPolygonBase {
 
                     const hpr1 = Tool.Math.hpr(positions[0], positions[1]);
                     const hpr2 = Tool.Math.hpr(positions[0], positions[2]);
-                    if (!hpr || !hpr2) {
+                    if (!hpr1 || !hpr2) {
                         return;
                     }
 
