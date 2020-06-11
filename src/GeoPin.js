@@ -87,6 +87,10 @@ class GeoPin extends XE.Core.XbsjCzmObj {
         }));
     }
 
+    flyTo() {
+        this._pin.flyTo();
+    }
+
     destroy() {
         if (this._div) {
             this._div.parentNode.removeChild(this._div);
