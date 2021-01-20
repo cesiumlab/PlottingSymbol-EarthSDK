@@ -2,6 +2,8 @@ import PlotPolygonBase from './base/PlotPolygonBase';
 
 const Tool = XE.Tool;
 
+const c_polygonPositions = new Array(360).fill(0).map(e => [0, 0, 0]);
+
 class GeoCircle extends PlotPolygonBase {
   constructor(earth, guid) {
     super(earth, guid);
@@ -9,7 +11,6 @@ class GeoCircle extends PlotPolygonBase {
     this._onlyMove = true;
     this._fixedPositionsNum = 2;
 
-    this._polygonPositions = new Array(360).fill(0).map(e => [0, 0, 0]);
     this._pgPositions = [];
 
     this.disposers.push(
@@ -39,12 +40,12 @@ class GeoCircle extends PlotPolygonBase {
               positions[0],
               i * Math.PI/180,
               d,
-              this._polygonPositions[i],
+              c_polygonPositions[i],
             );
           }
 
           this._pgPositions.length = 0;
-          this._polygonPositions.forEach(e => {
+          c_polygonPositions.forEach(e => {
             this._pgPositions.push(e[0], e[1]);
           });
 
