@@ -11,7 +11,6 @@ class GeoCircle extends PlotPolygonBase {
 
     this._polygonPositions = new Array(360).fill(0).map(e => [0, 0, 0]);
     this._pgPositions = [];
-    this._nextPosition = [0, 0, 0];
 
     this.disposers.push(
       XE.MVVM.watch(
@@ -28,9 +27,6 @@ class GeoCircle extends PlotPolygonBase {
 
           const d = Tool.Math.geoDistance(positions[0], positions[1]);
 
-          this._polygonPositions.length = 0;
-          this._polygonPositions.push([...positions[1]]);
-
           const hpr = Tool.Math.hpr(positions[0], positions[1]);
           if (!hpr) {
             return;
@@ -38,14 +34,13 @@ class GeoCircle extends PlotPolygonBase {
 
           const slice = 360;
 
-          for (var i = 0; i < slice - 1; i++) {
+          for (let i = 0; i < slice; i++) {
             Tool.Math.geoMove(
               positions[0],
-              (hpr[0] += Math.PI / 180),
+              i * Math.PI/180,
               d,
-              this._nextPosition
+              this._polygonPositions[i],
             );
-            this._polygonPositions.push([...this._nextPosition]);
           }
 
           this._pgPositions.length = 0;
