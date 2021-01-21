@@ -30,6 +30,8 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
             this._polygon.outline.show = this.outlineShow;
             this._polygon.depthTest = this.depthTest;
             this._polygon.extrudedHeight = this.extrudedHeight;
+            this._polygon.minShowHeight = this.minShowHeight;
+            this._polygon.maxShowHeight = this.maxShowHeight;
         }
 
         updatePolygon();
@@ -44,6 +46,8 @@ class PlotPolygonBase extends XE.Obj.PlotBase {
                 outlineShow: this.outlineShow,
                 depthTest: this.depthTest,
                 extrudedHeight: this.extrudedHeight,
+                minShowHeight: this.minShowHeight,
+                maxShowHeight: this.maxShowHeight,
             }
         }, () => updatePolygon()));
     }
@@ -70,6 +74,8 @@ PlotPolygonBase.defaultOptions = {
     outlineShow: true,
     depthTest: false, // 深度测试，当开启地形透明时，建议开启
     extrudedHeight: null,
+    minShowHeight: -Number.MAX_VALUE,
+    maxShowHeight: Number.MAX_VALUE,
 };
 
 export default PlotPolygonBase;
