@@ -53,18 +53,16 @@ class GeoPin extends XE.Core.XbsjCzmObj {
             }
         }, s => {
             let distance = XE.Tool.Math.distance([s.position, s.cameraPosition])
-            if (s.near <= distance && distance <= s.far) {
+            if (s.enabled && s.near <= distance && distance <= s.far) {
                 this._div.style.display = "block";
             } else {
                 this._div.style.display = "none";
             }
-
-            if (s.enabled) {
-                this._div.style.display = "block";
-            } else {
-                this._div.style.display = "none";
-            }
-
+            // if (s.enabled) {
+            //     this._div.style.display = "block";
+            // } else {
+            //     this._div.style.display = "none";
+            // }
         }));
 
         this._pin.show = false;
