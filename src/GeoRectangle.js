@@ -30,34 +30,6 @@ class GeoRectangle extends PlotPolygonBase {
             return;
           }
 
-          // const d = Tool.Math.geoDistance(positions[0], positions[1]);
-
-          // this._polygonPositions.length = 0;
-          // // this._polygonPositions.push([...positions[0]]);
-          // this._polygonPositions.push([...positions[1]]);
-
-          // const hpr = Tool.Math.hpr(positions[0], positions[1]);
-          // if (!hpr) {
-          //   return;
-          // }
-
-          // const slice = 4;
-
-          // for (var i = 0; i < slice - 1; i++) {
-          //   Tool.Math.geoMove(
-          //     positions[0],
-          //     (hpr[0] += Math.PI / 2),
-          //     d,
-          //     this._nextPosition
-          //   );
-          //   this._polygonPositions.push([...this._nextPosition]);
-          // }
-
-          // this._pgPositions.length = 0;
-          // this._polygonPositions.forEach(e => {
-          //   this._pgPositions.push(e[0], e[1]);
-          // });
-
           const p = positions;
           const n = Math.min;
           const x = Math.max;
