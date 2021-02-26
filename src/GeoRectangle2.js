@@ -18,45 +18,56 @@ class GeoRectangle2 extends PlotPolygonBase {
     this.disposers.push(
       XE.MVVM.watch(
         () => ({
-          ps: [...this.positions.map(e => [...e])],
+          positions: [...this.positions.map(e => [...e])],
           rotation: this.rotation,
+          width: this.width,
+          height: this.height,
         }),
-        () => {
-          const { positions, rotation } = this;
+        ({ 
+          positions, 
+          rotation, 
+          width, 
+          height, 
+        }) => {
           const l = positions.length;
 
-          if (l < 2) {
+          if (l <= 0) {
             this._polygonShow = false;
             return;
           }
 
-          const p = positions;
-          const n = Math.min;
-          const x = Math.max;
-          const h = p[0][2];
-
-          const d = Tool.Math.geoDistance(p[0], p[1]);
-          if (d <= 0) {
-            return;
-          }
-
-          const midPt = [(p[0][0] + p[1][0])*.5, (p[0][1] + p[1][1])*.5, (p[0][2] + p[1][2])*.5, ];
-          const p0 = [n(p[0][0], p[1][0]), n(p[0][1], p[1][1]), h];
-          const p1 = [x(p[0][0], p[1][0]), n(p[0][1], p[1][1]), h];
-          const p2 = [x(p[0][0], p[1][0]), x(p[0][1], p[1][1]), h];
-          const p3 = [n(p[0][0], p[1][0]), x(p[0][1], p[1][1]), h];
+          const center = positions[0]
           
           c_polygonPositions.length = 0;
-          c_polygonPositions.push(p0, p1, p2, p3);
 
-          // rotation
-          for (let lp of c_polygonPositions) {
-            const d = Tool.Math.geoDistance(midPt, lp);
-            const hpr = Tool.Math.hpr(midPt, lp);
-            if (hpr) {
-              Tool.Math.geoMove(midPt, hpr[0] += rotation, d, lp);
-            }
-          }
+          // // rotation
+          // for (let lp of c_polygonPositions) {
+          //   const d = Tool.Math.geoDistance(midPt, lp);
+          //   const hpr = Tool.Math.hpr(midPt, lp);
+          //   if (hpr) {
+          //     Tool.Math.geoMove(midPt, hpr[0] += rotation, d, lp);
+          //   }
+          // }
+
+          // 东北
+          Tool.Math.geoMove(center, rotation, width*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation - Math.PI*0.5, height*0.5, this._nextPosition);
+          c_polygonPositions.push([...this._nextPosition]);
+          
+          // 西北
+          Tool.Math.geoMove(center, rotation, -width*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, height*0.5, this._nextPosition);
+          c_polygonPositions.push([...this._nextPosition]);
+
+          // 西南
+          Tool.Math.geoMove(center, rotation, -width*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, -height*0.5, this._nextPosition);
+          c_polygonPositions.push([...this._nextPosition]);
+
+          // 东南
+          Tool.Math.geoMove(center, rotation, width*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, -height*0.5, this._nextPosition);
+          c_polygonPositions.push([...this._nextPosition]);
 
           c_pgPositions.length = 0;
           c_polygonPositions.forEach(e => {
@@ -75,6 +86,8 @@ class GeoRectangle2 extends PlotPolygonBase {
 
 GeoRectangle2.defaultOptions = {
   rotation: 0,
+  width: 200000,
+  height: 100000,
 };
 
 GeoRectangle2.registerType(GeoRectangle2, "GeoRectangle2");
