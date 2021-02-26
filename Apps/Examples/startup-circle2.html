@@ -83,6 +83,10 @@
                             <span><input type="range" min="0" max="100" step="1" v-model.number="outlineWidth"></span><br/>
                             <span>半径: {{ radius }}米</span><br/>
                             <span><input type="range" min="100" max="1000000" step="1" v-model.number="radius"></span><br/>
+                            <span>内孔半径: {{ holeRadius }}米</span><br/>
+                            <span><input type="range" min="100" max="1000000" step="1" v-model.number="holeRadius"></span><br/>
+                            <span>分段数: {{ slice }}</span><br/>
+                            <span><input type="range" min="10" max="360" step="1" v-model.number="slice"></span><br/>
                             <span>填充颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
                             <span>填充不透明度: {{ colors[3] }}</span><br/>
                             <span><input type="range" min="0" max="1" step="0.1" v-model.number="colors[3]"></span><br/>
@@ -100,6 +104,8 @@
                     ground: true, // 贴地
                     outlineWidth: 5, // 宽度,
                     radius: 20000, // 半径
+                    holeRadius: 0, // 内孔半径
+                    slice: 360, // 分段数
                     colors: [0, 0, 0, 0]
                 };
             },
@@ -156,6 +162,8 @@
                 this._groundUnbind = XE.MVVM.bind(this, 'ground', circle, 'ground');
                 this._outlineWidthUnbind = XE.MVVM.bind(this, 'outlineWidth', circle, 'outlineWidth');
                 this._radiusUnbind = XE.MVVM.bind(this, 'radius', circle, 'radius');
+                this._holeRadiusUnbind = XE.MVVM.bind(this, 'holeRadius', circle, 'holeRadius');
+                this._sliceUnbind = XE.MVVM.bind(this, 'slice', circle, 'slice');
                 this._colorsUnbind = XE.MVVM.bind(this, 'colors', circle, 'color');
 
                 this._earth = earth;
@@ -184,6 +192,8 @@
                 this._groundUnbind = this._groundUnbind && this._groundUnbind();
                 this._outlineWidthUnbind = this._outlineWidthUnbind && this._outlineWidthUnbind();
                 this._radiusUnbind = this._radiusUnbind && this._radiusUnbind();
+                this._holeRadiusUnbind = this._holeRadiusUnbind && this._holeRadiusUnbind();
+                this._sliceUnbind = this._sliceUnbind && this._sliceUnbind();
                 this._colorsUnbind = this._colorsUnbind && this_colorsUnbind();
                 this._earth = this._earth && this._earth.destroy();
             },
