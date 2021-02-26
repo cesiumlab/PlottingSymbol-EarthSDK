@@ -56,17 +56,17 @@ class GeoRectangle2 extends PlotPolygonBase {
           
           // 西北
           Tool.Math.geoMove(center, rotation, -width*0.5, this._nextPosition);
-          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, height*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation - Math.PI*0.5, height*0.5, this._nextPosition);
           c_polygonPositions.push([...this._nextPosition]);
 
           // 西南
           Tool.Math.geoMove(center, rotation, -width*0.5, this._nextPosition);
-          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, -height*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, height*0.5, this._nextPosition);
           c_polygonPositions.push([...this._nextPosition]);
 
           // 东南
           Tool.Math.geoMove(center, rotation, width*0.5, this._nextPosition);
-          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, -height*0.5, this._nextPosition);
+          Tool.Math.geoMove(this._nextPosition, rotation + Math.PI*0.5, height*0.5, this._nextPosition);
           c_polygonPositions.push([...this._nextPosition]);
 
           c_pgPositions.length = 0;
@@ -75,7 +75,7 @@ class GeoRectangle2 extends PlotPolygonBase {
           });
 
           this._polygon.positions = c_pgPositions;
-          this._polygon.height = h;
+          this._polygon.height = positions[0][2];;
 
           this._polygonShow = true;
         }
