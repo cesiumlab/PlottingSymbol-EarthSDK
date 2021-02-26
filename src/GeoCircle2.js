@@ -91,4 +91,4 @@ GeoCircle2.defaultOptions = {
 
 GeoCircle2.registerType(GeoCircle2, "GeoCircle2");
 
-export default GeoCircle;
+export default GeoCircle2;
