@@ -81,6 +81,12 @@
                             <span @click="ground = !ground" class="checkbox"><input class="curvearrow" type="checkbox" v-model="ground">是否贴地</span><br/>
                             <span>边框宽度: {{ outlineWidth }}像素</span><br/>
                             <span><input type="range" min="0" max="100" step="1" v-model.number="outlineWidth"></span><br/>
+                            <span>方位角: {{ rotation }}°</span><br/>
+                            <span><input type="range" min="0" max="360" step="1" v-model.number="rotation"></span><br/>
+                            <span>长度: {{ width }}米</span><br/>
+                            <span><input type="range" min="100" max="10000000" step="1" v-model.number="width"></span><br/>
+                            <span>宽度: {{ height }}米</span><br/>
+                            <span><input type="range" min="100" max="10000000" step="1" v-model.number="height"></span><br/>
                             <span>填充颜色：</span><input class="colorbox" type="color" value="#00ff40" @input=colorchange(event)><br/>
                             <span>填充不透明度: {{ colors[3] }}</span><br/>
                             <span><input type="range" min="0" max="1" step="0.1" v-model.number="colors[3]"></span><br/>
@@ -97,6 +103,9 @@
                     outlineShow: true, //边框显示
                     ground: true, // 贴地
                     outlineWidth: 5, // 宽度
+                    rotation: 0,
+                    width: 200000,
+                    height: 100000,
                     colors: [0, 0, 0, 0]
                 };
             },
@@ -152,6 +161,9 @@
                 this._outlineShowUnbind = XE.MVVM.bind(this, 'outlineShow', rectangle, 'outlineShow');
                 this._groundUnbind = XE.MVVM.bind(this, 'ground', rectangle, 'ground');
                 this._outlineWidthUnbind = XE.MVVM.bind(this, 'outlineWidth', rectangle, 'outlineWidth');
+                this._rotationUnbind = XE.MVVM.bindDegreeRadian(this, 'rotation', rectangle, 'rotation');
+                this._widthUnbind = XE.MVVM.bind(this, 'width', rectangle, 'width');
+                this._heightUnbind = XE.MVVM.bind(this, 'height', rectangle, 'height');
                 this._colorsUnbind = XE.MVVM.bind(this, 'colors', rectangle, 'color');
 
                 this._earth = earth;
@@ -179,6 +191,9 @@
                 this._outlineShowUnbind = this._outlineShowUnbind && this._outlineShowUnbind();
                 this._groundUnbind = this._groundUnbind && this._groundUnbind();
                 this._outlineWidthUnbind = this._outlineWidthUnbind && this._outlineWidthUnbind();
+                this._rotationUnbind = this._rotationUnbind && this._rotationUnbind();
+                this._widthUnbind = this._widthUnbind && this._widthUnbind();
+                this._heightUnbind = this._heightUnbind && this._heightUnbind();
                 this._colorsUnbind = this._colorsUnbind && this_colorsUnbind();
                 this._earth = this._earth && this._earth.destroy();
             },
