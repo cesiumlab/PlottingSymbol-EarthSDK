@@ -19,6 +19,10 @@ vueApp.examples = [
                 "url": "./startup-circle.html"
             },
             {
+                "title": "面状-圆",
+                "url": "./startup-circle2.html"
+            },
+            {
                 "title": "创建地球",
                 "url": "./startup-createEarth.html"
             },
