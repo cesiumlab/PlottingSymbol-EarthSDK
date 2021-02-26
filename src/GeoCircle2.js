@@ -84,7 +84,7 @@ class GeoCircle2 extends PlotPolygonBase {
 }
 
 GeoCircle2.defaultOptions = {
-  radius: 2000,
+  radius: 200000,
   holeRadius: 0,
   slice: 360,
 };
