@@ -75,6 +75,10 @@ vueApp.examples = [
                 "url": "./startup-sector.html"
             },
             {
+                "title": "面状-扇形2",
+                "url": "./startup-sector2.html"
+            },
+            {
                 "title": "线状-扇形搜寻区",
                 "url": "./startup-sectorSearch.html"
             },

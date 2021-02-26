@@ -74,11 +74,11 @@ class GeoSector2 extends PlotPolygonBase {
                     let sa = startAngle;
                     const stopAngle = startAngle + angle;
                     while (sa < stopAngle) {
-                        Tool.Math.geoMove(center, sa, this._nextPosition);
+                        Tool.Math.geoMove(center, sa, radius, this._nextPosition);
                         this._polygonPositions.push([...this._nextPosition]);
                         sa += sliceAngle;
                     }
-                    Tool.Math.geoMove(center, stopAngle, this._nextPosition);
+                    Tool.Math.geoMove(center, stopAngle, radius, this._nextPosition);
                     this._polygonPositions.push([...this._nextPosition]);
 
                     this._pgPositions.length = 0;
@@ -96,11 +96,10 @@ class GeoSector2 extends PlotPolygonBase {
     }
 }
 
-GeoCircle2.defaultOptions = {
+GeoSector2.defaultOptions = {
     radius: 200000,
     startAngle: 0, // 方位角
-    angle: 60, // 张角
-    slice: 360,
+    angle: 60 * Math.PI / 180, // 张角
 };
 
 GeoSector2.registerType(GeoSector2, 'GeoSector2');
