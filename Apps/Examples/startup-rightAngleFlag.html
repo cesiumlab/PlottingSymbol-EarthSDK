@@ -9,6 +9,8 @@
   </meta>
   <title>面状-直角旗标</title>
   <!-- 0 引入js文件 -->
+  <script src="../../XbsjCesium/Cesium.js"></script>
+  <link rel="stylesheet" href="../../XbsjCesium/Widgets/widgets.css">
   <script src="../../XbsjEarth/XbsjEarth.js"></script>
   <script src="./scripts/vue.min.js"></script>
   <style>
@@ -112,36 +114,36 @@
         // 1.1.2 场景配置
         earth.sceneTree.root = {
           "children": [{
-              "czmObject": {
-                "name": "默认离线影像",
-                "xbsjType": "Imagery",
-                "xbsjImageryProvider": {
-                  "createTileMapServiceImageryProvider": {
-                    "url": XE.HTML.cesiumDir + 'Assets/Textures/NaturalEarthII',
-                    "fileExtension": 'jpg',
-                  },
-                  "type": "createTileMapServiceImageryProvider"
-                }
-              },
-            },
-            {
-              "ref": "rightangleflag",
-              "czmObject": {
-                "xbsjType": "GeoRightAngleFlag",
-                "positions": [
-                  [
-                    1.868533015215075,
-                    0.5898823684977735,
-                    9.313225746154785e-10
-                  ],
-                  [
-                    1.927811088638468,
-                    0.5279778184137158,
-                    1.3969838619232178e-9
-                  ]
-                ]
+            "czmObject": {
+              "name": "默认离线影像",
+              "xbsjType": "Imagery",
+              "xbsjImageryProvider": {
+                "createTileMapServiceImageryProvider": {
+                  "url": XE.HTML.cesiumDir + 'Assets/Textures/NaturalEarthII',
+                  "fileExtension": 'jpg',
+                },
+                "type": "createTileMapServiceImageryProvider"
               }
+            },
+          },
+          {
+            "ref": "rightangleflag",
+            "czmObject": {
+              "xbsjType": "GeoRightAngleFlag",
+              "positions": [
+                [
+                  1.868533015215075,
+                  0.5898823684977735,
+                  9.313225746154785e-10
+                ],
+                [
+                  1.927811088638468,
+                  0.5279778184137158,
+                  1.3969838619232178e-9
+                ]
+              ]
             }
+          }
           ]
         };
 
